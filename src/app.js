@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
+const { initializeDatabase } = require('./config/database');
 
 const app = express();
 const port = 3000;
@@ -15,6 +16,7 @@ app.use(cors());
 
 async function startServer() {
   try {
+    await initializeDatabase()
     app.listen(port, () => {
       logger.info('AsyncFlow API started', { port });
     });
