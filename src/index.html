@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AsyncFlow Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AsyncFlow Dashboard</h1>
+        <div id="add-jobs">
+        <h2>Add New Job</h2>
+        <form id="job-form">
+            <label for="task-type">Task Type:</label>
+            <select id="task-type" name="task-type" required>
+            <option value="send_email">Send Email</option>
+            <option value="generate_report">Generate Report</option>
+            <option value="resize_image">Resize Image</option>
+            </select>
+            <br>
+            <div id="emailField" style="display: none;">
+            <label for="email">Email to:</label>
+            <input type="email" id="email" name="email">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject">
+            </div>
+            <div id="reportField" style="display: none;">
+            <label for="report-type">Report Type:</label>
+            <input type="text" id="report-type" name="report-type">
+            </div>
+            <div id="imageField" style="display: none;">
+            <label for="image-url">Image URL:</label>
+            <input type="text" id="image-url" name="image-url">
+            <label for="dimensions">Dimensions (e.g. 800x600):</label>
+            <input type="text" id="dimensions" name="dimensions">
+            </div>
+            <br>
+            <button type="submit">Add Job</button>
+        </form>
+        </div>
+        <div id="job-stats" class="stats">
+        <h2>Job Statistics</h2>
+        <form id="statsform">
+            <label for="id">Job Id:</label>
+            <input type="number" id="job-id" name="id">
+            <button type="submit" id="get-job">Get Job Details</button>
+        </form>
+        <div id="job-details"></div>
+        </div>
+        <div id="failed-jobs" class="failed-jobs">
+        <h2>Failed Jobs</h2>
+        <p>Loading...</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

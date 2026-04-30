@@ -6,14 +6,18 @@ const logger = require('./config/logger');
 const jobRoutes = require('./routes/jobRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
-app.use('/jobs', jobRoutes);
-app.use('/admin', adminRoutes);
-
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(cors());
+
+app.use('/jobs', jobRoutes);
+app.use('/admin', adminRoutes);
+
+
+
+
 
 app.use((error, _req, res, _next) => {
   logger.error('Unhandled API error', { message: error.message, stack: error.stack });
