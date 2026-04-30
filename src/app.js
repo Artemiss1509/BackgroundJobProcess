@@ -2,6 +2,12 @@ const express = require('express');
 const cors = require('cors');
 
 const { initializeDatabase } = require('./config/database');
+const logger = require('./config/logger');
+const jobRoutes = require('./routes/jobRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+
+app.use('/jobs', jobRoutes);
+app.use('/admin', adminRoutes);
 
 const app = express();
 const port = 3000;
@@ -9,10 +15,10 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-
-
-
-
+app.use((error, _req, res, _next) => {
+  logger.error('Unhandled API error', { message: error.message, stack: error.stack });
+  res.status(500).json({ message: 'Internal server error' });
+});
 
 async function startServer() {
   try {
